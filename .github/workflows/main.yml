@@ -27,7 +27,7 @@ jobs:
         run: |
           docker-compose run \
           -v "$GITHUB_WORKSPACE/dist:/app/loconotion/dist" \
-          -v "$GITHUB_WORKSPACE/pages_repo/site.toml:/app/loconotion/site.toml"
+          -v "$GITHUB_WORKSPACE/pages_repo/site.toml:/app/loconotion/site.toml" \
           loconotion "site.toml"
         env:
           NOTION_URL: https://timovv.notion.site/Timo-van-Veenendaal-91d10a525b6d4321bb4244e12b3525e6
