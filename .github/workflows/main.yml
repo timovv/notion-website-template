@@ -1,0 +1,46 @@
+name: Publish Notion website to GitHub Pages
+
+on:
+  # Manual update only.
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout loconotion
+        uses: actions/checkout@v2
+        with:
+          repository: leoncvlt/loconotion
+          path: loconotion
+      - name: Checkout this repo
+        uses: actions/checkout@v2
+        with:
+          path: pages_repo
+
+      - name: Build Loconotion docker image
+        run: docker-compose build loconotion
+        working-directory: loconotion
+        
+      - name: Run Loconotion
+        run: |
+          docker-compose run \
+          -v "$GITHUB_WORKSPACE/dist:/app/loconotion/dist" \
+          -v "$GITHUB_WORKSPACE/pages_repo/site.toml:/app/loconotion/site.toml"
+          loconotion "site.toml"
+        env:
+          NOTION_URL: https://timovv.notion.site/Timo-van-Veenendaal-91d10a525b6d4321bb4244e12b3525e6
+        working-directory: loconotion
+        
+      - name: Copy dist/ into the repo, discarding the page name
+        run: cp -r dist/* pages_repo/dist
+      
+      - name: Push to GitHub pages
+        working-directory: pages_repo
+        run: |
+          git add dist
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "$(date): Update website from Notion"
+          git subtree push --prefix dist origin gh-pages
