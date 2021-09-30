@@ -32,15 +32,13 @@ jobs:
         env:
           NOTION_URL: https://timovv.notion.site/Timo-van-Veenendaal-91d10a525b6d4321bb4244e12b3525e6
         working-directory: loconotion
-        
-      - name: Copy dist/ into the repo, discarding the page name
-        run: cp -r dist/* pages_repo/dist
       
       - name: Push to GitHub pages
-        working-directory: pages_repo
         run: |
-          git add dist
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "$(date): Update website from Notion"
-          git push origin `git subtree split --prefix dist master`:gh-pages --force
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          wget https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh && chmod +x deploy.sh
+          
+          GIT_DEPLOY_DIR=dist/site \
+          GIT_DEPLOY_BRANCH=gh-pages \
+          GIT_DEPLOY_REPO="https://${{ github.token }}@github.com/${{ github.repository }}.git" ./deploy.sh 
