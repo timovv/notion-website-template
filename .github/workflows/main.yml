@@ -43,4 +43,4 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "$(date): Update website from Notion"
-          git subtree push --prefix dist origin gh-pages
+          git push origin $(git subtree split --prefix dist master):gh-pages --force
