@@ -35,8 +35,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          wget https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh && chmod +x deploy.sh
           
           GIT_DEPLOY_DIR=dist/site \
           GIT_DEPLOY_BRANCH=gh-pages \
-          GIT_DEPLOY_REPO="https://${{ github.token }}@github.com/${{ github.repository }}.git" ./deploy.sh 
+          GIT_DEPLOY_REPO="https://${{ github.token }}@github.com/${{ github.repository }}.git" ./pages_repo/deploy.sh
