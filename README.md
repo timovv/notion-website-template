@@ -9,3 +9,9 @@ Make a website using Notion, GitHub Pages and Loconotion in just 5 steps.
 1. Update your repo's `Pages` settings to use the `gh-pages` branch, hit save, and voila!
 
 To resync the website, simply run the GitHub action again. `site.toml` can be updated to use any of the settings specified in the [Loconotion README](https://github.com/leoncvlt/loconotion/blob/master/README.md).
+
+## Acknowledgements
+
+Thanks to:
+- @leoncvt for creating the Loconotion script
+- @X1011 for the original script used to deploy the website to GitHub pages
