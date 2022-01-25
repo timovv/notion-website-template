@@ -2,7 +2,7 @@
 
 Make a website using Notion, GitHub Pages and Loconotion in just 5 steps.
 
-1. Clone this repo.
+1. Fork this repo or press [use this template button](https://github.com/timovv/notion-website-template/generate).
 1. Create a Notion page to be your website. This can have subpages, databases, anything supported by [Loconotion](https://github.com/leoncvlt/loconotion).
 1. Share your Notion page publicly, and update `site.toml` in your repo to point to it.
 1. Run the `Publish Notion website to GitHub Pages` action under the Actions tab of your repo.
