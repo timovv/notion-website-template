@@ -717,7 +717,7 @@ input[type="number"].input-hide-arrows {
  * Use css variables to customize styles for pesudoselectors we
  * can't easily target from inline style properties.
  *
- * Each class defined below should be added to customizableClassnameHelpers.ts.
+ * Each class defined below should be added to CustomizableClasses in cssHelpers.ts.
  * For each CSS property, use var(`--${className}--${propertyName}`) as the value.
  *
  * We use camelCase names here so they're easier to write in Typescript.
@@ -725,6 +725,8 @@ input[type="number"].input-hide-arrows {
 /* ==================================================================== */
 /** Conditional style when self is contentEditable */
 /** Conditional style when a content-editable root is editable */
+/** Conditional style when an element is or is inside a focused contentEditable. */
+/** Conditional styles for :after when we are composing text */
 /*!*************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/client/css/react-datetime.css ***!
   \*************************************************************************************/
@@ -998,6 +1000,25 @@ table > tr {
 .front-fadein-fast {
     animation: fadein ease-in 150ms
     }
+/*!*************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/client/css/hide-scrollbar.css ***!
+  \*************************************************************************************/
+/**
+ * Utility to hide scrollbars while retaining scroll functionality.
+ * This can't be done with React inline styles because of the
+ * ::-webkit-scrollbar pseudo-element selector.
+*/
+.hide-scrollbar {
+    /* Hide scrollbars in IE 10+. */
+    -ms-overflow-style: none;
+    /* Hide scrollbar in FF. */
+    scrollbar-width: none
+    }
+/* Hide scrollbar for Chrome/Safari/Webkit browsers. */
+.hide-scrollbar::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important
+    }
 /*!****************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/client/css/prism.css ***!
   \****************************************************************************/
@@ -1179,6 +1200,19 @@ table > tr {
     }
 .notion-dark-theme .token.deleted {
     color: red
+    }
+/*!********************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/client/css/react-pdf.css ***!
+  \********************************************************************************/
+.react-pdf__Page {
+    padding-bottom: 8px
+    }
+.react-pdf__Page__textContent {
+    position: absolute;
+    top: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    cursor: text
     }
 /*!***********************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/react-day-picker/lib/style.css ***!
@@ -1472,17 +1506,4 @@ table > tr {
         width: 32px;
         height: 32px
         }
-    }
-/*!********************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./src/client/css/react-pdf.css ***!
-  \********************************************************************************/
-.react-pdf__Page {
-    padding-bottom: 8px
-    }
-.react-pdf__Page__textContent {
-    position: absolute;
-    top: 0 !important;
-    left: 0 !important;
-    transform: none !important;
-    cursor: text
     }
