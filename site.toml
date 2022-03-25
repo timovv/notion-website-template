@@ -2,5 +2,9 @@
 # For information on the different settings available, and an example file,
 # see the Locomotion README: https://github.com/leoncvlt/loconotion/blob/master/README.md
 
+# DO NOT CHANGE THIS VALUE. The deploy script relies on the site being deployed to the
+# "site" directory.
+name = "site"
+
 # This page should be the root of your website. It's important.
 page = "https://timovv.notion.site/Timo-van-Veenendaal-91d10a525b6d4321bb4244e12b3525e6"
