@@ -10,12 +10,12 @@ jobs:
 
     steps:
       - name: Checkout loconotion
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: leoncvlt/loconotion
           path: loconotion
       - name: Checkout this repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: pages_repo
 
