@@ -3,6 +3,9 @@ name: Publish Notion website to GitHub Pages
 on:
   # Manual update only.
   workflow_dispatch:
+  
+permissions:
+  contents: write
 
 jobs:
   deploy:
