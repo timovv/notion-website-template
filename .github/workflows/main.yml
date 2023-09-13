@@ -12,12 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout loconotion
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           repository: leoncvlt/loconotion
           path: loconotion
       - name: Checkout this repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           path: pages_repo
       - name: Download and install chromedriver
@@ -26,7 +26,7 @@ jobs:
         run: pip install -r loconotion/requirements.txt
       - name: Run Loconotion
         run: |
-          python3 loconotion/loconotion --chromedriver $(which chromium-chromedriver) "pages_repo/site.toml"
+          python3 loconotion/loconotion --chromedriver chromedriver "pages_repo/site.toml"
       - name: Push to GitHub pages
         run: |
           git config --global user.name "github-actions[bot]"
