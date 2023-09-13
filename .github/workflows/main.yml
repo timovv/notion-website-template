@@ -10,7 +10,6 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout loconotion
         uses: actions/checkout@v3
@@ -21,24 +20,18 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: pages_repo
-
-      - name: Build Loconotion docker image
-        run: docker-compose build loconotion
-        working-directory: loconotion
-        
+      - name: Download and install chromedriver
+        run: sudo apt install chromium-chromedriver
+      - name: Install Loconotion dependencies
+        run: pip install -r loconotion/requirements.txt
       - name: Run Loconotion
         run: |
-          docker run \
-          -v "$GITHUB_WORKSPACE/pages_repo/dist:/app/loconotion/dist" \
-          -v "$GITHUB_WORKSPACE/pages_repo/site.toml:/app/loconotion/site.toml" \
-          loconotion "site.toml"
-        working-directory: loconotion
+          python3 loconotion/loconotion --chromedriver chromedriver "pages_repo/site.toml"
       - name: Push to GitHub pages
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          
-          GIT_DEPLOY_DIR=dist/site \
+          GIT_DEPLOY_DIR=../dist/site \
           GIT_DEPLOY_BRANCH=gh-pages \
           GIT_DEPLOY_REPO="https://${{ github.token }}@github.com/${{ github.repository }}.git" ./deploy.sh
         working-directory: pages_repo
