@@ -31,7 +31,8 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          GIT_DEPLOY_DIR=../dist/site \
+          DEPLOY_DIR=$(ls ../dist/)
+          GIT_DEPLOY_DIR=../dist/$DEPLOY_DIR \
           GIT_DEPLOY_BRANCH=gh-pages \
           GIT_DEPLOY_REPO="https://${{ github.token }}@github.com/${{ github.repository }}.git" ./deploy.sh
         working-directory: pages_repo
