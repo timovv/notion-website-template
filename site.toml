@@ -4,7 +4,7 @@
 
 # DO NOT CHANGE THIS VALUE. The deploy script relies on the site being deployed to the
 # "site" directory.
-name = "site"
+name = "Varsity Note"
 
 # This page should be the root of your website. It's important.
-page = "<your Notion share URL here>"
+page = "https://shivanshukesarwani.notion.site/f364b39a7eef4f638ffa29cf73a6a421?v=2a4d3f86d244441f9d6eccfc18c72a0d&pvs=4"
